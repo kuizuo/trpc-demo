@@ -5,10 +5,7 @@ import {
   type DefaultSession,
   type NextAuthOptions,
 } from "next-auth";
-import CredentialsProvider from "next-auth/providers/credentials";
 import GithubProvider from "next-auth/providers/github";
-import EmailProvider from "next-auth/providers/email";
-import z from "zod";
 import { env } from "~/env.mjs";
 import { prisma } from "~/server/db";
 
