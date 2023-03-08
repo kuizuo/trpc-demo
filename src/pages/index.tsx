@@ -56,22 +56,24 @@ const AuthShowcase: React.FC = () => {
           <span>Not logged in</span>
         )}
       </p>
-      {sessionData && (
-        <div className="flex gap-4">
-          <Link
-            href="/posts"
-            className="rounded-full bg-white/10 px-10 py-3 font-semibold text-white no-underline transition hover:bg-white/20"
-          >
-            Posts
-          </Link>
+
+      <div className="flex gap-4">
+        <Link
+          href="/posts"
+          className="rounded-full bg-white/10 px-10 py-3 font-semibold text-white no-underline transition hover:bg-white/20"
+        >
+          Posts
+        </Link>
+        {sessionData && (
           <Link
             href="/me"
             className="rounded-full bg-white/10 px-10 py-3 font-semibold text-white no-underline transition hover:bg-white/20"
           >
             Me
           </Link>
-        </div>
-      )}
+        )}
+      </div>
+
       <button
         className="rounded-full bg-white/10 px-10 py-3 font-semibold text-white no-underline transition hover:bg-white/20"
         onClick={sessionData ? () => void signOut() : () => void signIn()}

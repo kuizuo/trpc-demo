@@ -6,7 +6,7 @@ import {
 } from "~/server/api/trpc";
 
 export const postRouter = createTRPCRouter({
-  all: protectedProcedure.query(async ({ ctx }) => {
+  all: publicProcedure.query(async ({ ctx }) => {
     const posts = await ctx.prisma.post.findMany({
       include: { user: true },
       orderBy: { createdAt: "desc" },
@@ -60,7 +60,7 @@ export const postRouter = createTRPCRouter({
       return post;
     }),
   delete: protectedProcedure
-    .input(z.string().uuid())
+    .input(z.string())
     .mutation(async ({ ctx, input: id }) => {
       const post = await ctx.prisma.post.findFirst({
         where: { id: id, userId: ctx.session.user.id },
