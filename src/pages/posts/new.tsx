@@ -7,6 +7,7 @@ async function NewPost() {
   const router = useRouter();
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
+  const mutation = api.post.create.useMutation();
 
   const { data: session } = useSession();
   if (!session) {
@@ -14,10 +15,7 @@ async function NewPost() {
     return null;
   }
 
-  const handleSubmit = async (event: { preventDefault: () => void }) => {
-    event.preventDefault();
-
-    const mutation = api.post.create.useMutation();
+  const handleSubmit = async () => {
     const post = await mutation.mutateAsync({ title, content });
 
     console.log(post);
@@ -35,7 +33,7 @@ async function NewPost() {
           Back
         </button>
       </div>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={() => void handleSubmit()}>
         <div className="mb-4">
           <label htmlFor="title" className="mb-2 block font-bold text-gray-700">
             Title

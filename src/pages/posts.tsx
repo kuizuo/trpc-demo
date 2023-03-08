@@ -42,7 +42,7 @@ function Posts() {
           </Link>
           <Link
             href="/"
-            className="rounded-lg px-4 py-2 text-black border border-gray-300"
+            className="rounded-lg border border-gray-300 px-4 py-2 text-black"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -75,7 +75,7 @@ function Posts() {
                 <p className="mt-6 text-base text-gray-500">{post.content}</p>
                 {post.user.id === user?.id && (
                   <button
-                    onClick={() => handleDelete(post.id)}
+                    onClick={() => void handleDelete(post.id)}
                     className="absolute bottom-4 right-2 cursor-pointer text-red-300 transition duration-500 hover:text-red-500"
                   >
                     <svg
