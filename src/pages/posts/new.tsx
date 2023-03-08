@@ -3,23 +3,23 @@ import { useRouter } from "next/router";
 import { useState } from "react";
 import { api } from "~/utils/api";
 
-async function NewPost() {
+function NewPost() {
   const router = useRouter();
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
   const mutation = api.post.create.useMutation();
 
-  const { data: session } = useSession();
-  if (!session) {
-    await router.push("http://localhost:3000/api/auth/signin");
-    return null;
+  const { status } = useSession();
+
+  if (status === "unauthenticated") {
+    return router.push("/api/auth/signin");
   }
 
   const handleSubmit = async () => {
     const post = await mutation.mutateAsync({ title, content });
 
     console.log(post);
-    await router.push("/posts/");
+    await router.push("/posts");
   };
 
   return (
