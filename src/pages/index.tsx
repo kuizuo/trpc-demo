@@ -6,6 +6,7 @@ import { api } from "~/utils/api";
 
 import Link from "next/link";
 import { Logos } from "~/components/logo";
+import GithubCorner from "~/components/GithubCorner";
 
 const Home: NextPage = () => {
   const hello = api.example.hello.useQuery({ text: "from tRPC" });
@@ -30,6 +31,7 @@ const Home: NextPage = () => {
             <AuthShowcase />
           </div>
         </div>
+        <GithubCorner href="https://github.com/kuizuo/trpc-demo" />
       </main>
     </>
   );
